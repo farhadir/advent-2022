@@ -11,7 +11,7 @@ fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
 
 pub fn day1() {
     let mut s = BTreeSet::new();
-    if let Ok(lines) = read_lines("../day1_input.txt") {
+    if let Ok(lines) = read_lines("day1_input.txt") {
         let mut energy: u64 = 0;
         for line in lines {
             if let Ok(ip) = line {
@@ -25,4 +25,7 @@ pub fn day1() {
         }
     }
     println!("Last element is {}", s.iter().next_back().unwrap());
+
+    let mut iter = s.iter();
+    println!("Top 3 {}", iter.next_back().unwrap() + iter.next_back().unwrap() + iter.next_back().unwrap());
 }
