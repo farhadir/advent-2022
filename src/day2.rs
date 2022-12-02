@@ -1,7 +1,7 @@
 use std::fs::File;
 use std::io::{BufReader, Lines};
 
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy)]
 enum Play {
     Rock = 0,
     Paper = 1,
@@ -49,16 +49,8 @@ pub fn day2(lines: Lines<BufReader<File>>) {
                 _ => panic!()
             };
 
-            let res : u32 = score_table_1[strategy as usize][opponent as usize];
-            sum_1 += res;
-
-            let command = ip.split(' ').collect::<Vec<&str>>();
-            let opponent = match command[0].chars().next().unwrap() {
-                'A' => Play::Rock,
-                'B' => Play::Paper,
-                'C' => Play::Scissors,
-                _ => panic!()
-            };
+            let res_1 : u32 = score_table_1[strategy as usize][opponent as usize];
+            sum_1 += res_1;
 
             let result = match command[1].chars().next().unwrap() {
                 'X' => MatchResult::Loose,
@@ -67,9 +59,9 @@ pub fn day2(lines: Lines<BufReader<File>>) {
                 _ => panic!()
             };
 
-            let res : u32 = score_table_2[result as usize][opponent as usize];
+            let res_2 : u32 = score_table_2[result as usize][opponent as usize];
 
-            sum_2 += res;
+            sum_2 += res_2;
         }
     }
 
